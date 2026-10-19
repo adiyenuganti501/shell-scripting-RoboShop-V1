@@ -58,5 +58,5 @@ fi
         ]
     }'
 
-echo "Updated Route53 record for $instance: $r53_record -> $IP"
+echo "Updated Route53 record for $instance"
 done
