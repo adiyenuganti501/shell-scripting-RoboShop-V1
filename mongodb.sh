@@ -1,6 +1,6 @@
 #!/bin/bash
 
-user_id=$(is -u)
+user_id=$(id -u)
 logs_folder="/var/logs/mongodb"
 logs_file="$logs_folder/${0}.log"
 R="\e[31m"
@@ -8,8 +8,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-if [ "$user_id" -ne 0 ]; them
-echo -e "${R}You should run this script as root user or with sudo privileges.${N}"
+if [ "$user_id" -ne 0 ]; then
+    echo -e "${R}You should run this script as root user or with sudo privileges.${N}"
     exit 1
 fi
 
@@ -28,6 +28,7 @@ validation(){
     exit 1
     else
     echo " $2 Installation completed successfully." >> "$logs_file"
+    fi
 }
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo
