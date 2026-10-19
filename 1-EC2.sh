@@ -20,21 +20,21 @@ INSTANCE_ID=$(aws ec2 run-instances \
  echo "Instance ID: $INSTANCE_ID"
 
  if [ "$instance" != "FrontEnd" ] ; then 
-    IP=$(IP=$(aws ec2 describe-instances \
+    IP=$(aws ec2 describe-instances \
     --instance-ids "$INSTANCE_ID" \
     --query 'Reservations[0].Instances[0].PrivateIpAddress' \
     --output text \
     --region us-east-1)
-)
+
  r53_record=$instance.$domain_name
 
 else 
-   IP=$(IP=$(aws ec2 describe-instances \
+   IP=$(aws ec2 describe-instances \
     --instance-ids "$INSTANCE_ID" \
     --query 'Reservations[0].Instances[0].PublicIpAddress' \
     --output text \
     --region us-east-1)
-   )
+   
    r53_record=$domain_name
 fi
 
