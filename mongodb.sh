@@ -27,7 +27,7 @@ validation(){
     echo " $2 Installation failed. Check the logs for more details."  | tee -a "$logs_file"
     exit 1
     else
-    echo " $2 Installation completed successfully." >> | tee -a "$logs_file"
+    echo " $2 Installation completed successfully."  | tee -a "$logs_file"
     fi
 }
 
