@@ -20,14 +20,14 @@ fi
 
 mkdir -p "$logs_folder" 
 
-echo "Script started at $(date '+%F %T')" >> "$logs_file"
+echo "Script started at $(date '+%F %T')" | tee -a "$logs_file"
 
 validation(){
     if [ $1 -ne 0 ] ; then
-    echo " $2 Installation failed. Check the logs for more details." >> "$logs_file"
+    echo " $2 Installation failed. Check the logs for more details."  | tee -a "$logs_file"
     exit 1
     else
-    echo " $2 Installation completed successfully." >> "$logs_file"
+    echo " $2 Installation completed successfully." >> | tee -a "$logs_file"
     fi
 }
 
@@ -46,3 +46,5 @@ validation $? "MongoDB Remote Connection Config"
 
 systemctl restart mongod
 validate $? "Restarting MongoDB"
+
+echo "Script completed at $(date '+%F %T')" | tee -a "$logs_file"
