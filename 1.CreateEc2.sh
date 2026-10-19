@@ -27,6 +27,9 @@ aws ec2 run-instances \
       --query 'Instances[0].InstanceId' \
       --output text
 
+
+aws ec2 run-instances --image-id "ami-0220d79f3f480ecf5" --instance-type "t3.micro" --security-groups "RS-Common" --region "us-east-1"
+
    
 aws ec2 describe-instances    
  --instance-ids i-07ce2926522728dde   
