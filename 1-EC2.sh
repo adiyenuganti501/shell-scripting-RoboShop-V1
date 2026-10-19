@@ -8,4 +8,14 @@ hosted_zone_id="Z016823019WZ5N3TQQPKW"
 for instance in $@
 do
  echo "Creating EC2 instance for $instance..."
+ instance_id=${
+    aws ec2 run-instances \
+    --image-id $ami_id \
+    --instance-type $instance_type \
+    --security-group "RS-Common" "roboshop-$instance" \
+     --region "us-east-1" \
+      --query 'Instances[0].InstanceId' \
+      --output text
+ }
+ echo "Instance ID: $instance_id"
 done

@@ -19,9 +19,16 @@
 REGION="us-east-1"  # Specify the AWS region
 INSTANCE_TYPE="t2.micro"  # Specify the instance type
  
-# aws ec2 run-instances \
-#     --image-id "ami-0220d79f3f480ecf5" \
-#     --instance-type "t3.micro" \
-#     --security-group "RS-Common" \
-#     --region "us-east-1" \
+aws ec2 run-instances \
+    --image-id "ami-0220d79f3f480ecf5" \
+    --instance-type "t3.micro" \
+    --security-group "RS-Common" \
+     --region "us-east-1" \
+      --query 'Instances[0].InstanceId' \
+      --output text
+
    
+aws ec2 describe-instances    
+ --instance-ids i-07ce2926522728dde   
+ --query "Reservations[*].Instances[*].PublicIpAddress"   
+ --output text
