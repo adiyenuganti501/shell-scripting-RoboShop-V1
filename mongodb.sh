@@ -45,6 +45,6 @@ sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 validation $? "MongoDB Remote Connection Config"
 
 systemctl restart mongod
-validate $? "Restarting MongoDB"
+validation $? "MongoDB Service Restart"
 
 echo "Script completed at $(date '+%F %T')" | tee -a "$logs_file"
