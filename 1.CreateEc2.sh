@@ -19,3 +19,9 @@
 REGION="us-east-1"  # Specify the AWS region
 INSTANCE_TYPE="t2.micro"  # Specify the instance type
  
+# aws ec2 run-instances \
+#     --image-id "ami-0220d79f3f480ecf5" \
+#     --instance-type "t3.micro" \
+#     --security-group "RS-Common" \
+#     --region "us-east-1" \
+   
