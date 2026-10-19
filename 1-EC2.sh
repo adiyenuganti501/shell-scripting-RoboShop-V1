@@ -11,7 +11,7 @@ do
 INSTANCE_ID=$(aws ec2 run-instances \
     --image-id "$ami_id" \
     --instance-type "$instance_type" \
-    --security-groups "RS-Common" \
+    --security-groups "RS-Common" "roboshop-$instance" \
     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=roboshop-$instance}]" \
     --region "us-east-1" \
     --query 'Instances[0].InstanceId' \
