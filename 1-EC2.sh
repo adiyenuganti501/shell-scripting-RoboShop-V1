@@ -13,9 +13,9 @@ do
     --image-id $ami_id \
     --instance-type $instance_type \
     --security-group "RS-Common" "roboshop-$instance" \
-     --region "us-east-1" \
-      --query 'Instances[0].InstanceId' \
-      --output text
+    --region "us-east-1" \
+    --query 'Instances[0].InstanceId' \
+    --output text
  }
  echo "Instance ID: $instance_id"
 done
