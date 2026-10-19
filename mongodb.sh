@@ -13,10 +13,10 @@ if [ "$user_id" -ne 0 ]; then
     exit 1
 fi
 
-if [ $# -eq 0 ] ; then
-     echo -e "${Y}Usage: $0 <package1> <package2> ...${N}"
-    exit 1
-fi
+# if [ $# -eq 0 ] ; then
+#      echo -e "${Y}Usage: $0 <package1> <package2> ...${N}"
+#     exit 1
+# fi
 
 mkdir -p "$logs_folder" 
 
