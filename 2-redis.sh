@@ -1,7 +1,7 @@
 #!/bin/bash
 
 user_id=$(id -u)
-logs_folder="/var/logs/mongodb"
+logs_folder="/var/logs/redis"
 logs_file="$logs_folder/${0}.log"
 R="\e[31m"
 G="\e[32m"
@@ -42,6 +42,6 @@ validation $? "Allowing remote connections to Redis"
 
 systemctl enable redis &>> $logs_file
 systemctl start redis
-validate $? "Enable and start Redis
+validate $? "Enable and start Redis"
 
 echo "Script completed at [INFO] $(timestamp)" | tee -a "$logs_file"
