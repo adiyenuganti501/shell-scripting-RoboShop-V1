@@ -16,7 +16,9 @@ fi
 
 mkdir -p "$logs_folder" 
 
-timestamp=$(date '+%F %T')
+timestamp(){
+    date "+%F %T" 
+}
 
 
 validation(){
