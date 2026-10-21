@@ -1,7 +1,7 @@
 #!/bin/bash
 
 user_id=$(id -u)
-logs_folder="/var/logs/mongodb"
+logs_folder="/var/logs/roboshop"
 logs_file="$logs_folder/${0}.log"
 R="\e[31m"
 G="\e[32m"
