@@ -19,10 +19,10 @@ timestamp(){
 
 validation(){
     if [ $1 -ne 0 ] ; then
-    echo " $2 Installation failed. Check the logs for more details."  | tee -a "$logs_file"
+    echo " $(timestamp) [ERROR] $2 Installation failed. Check the logs for more details."  | tee -a "$logs_file"
     exit 1
     else
-    echo " $2 Installation completed successfully."  | tee -a "$logs_file"
+    echo " $(timestamp) [INFO] $2 Installation completed successfully."  | tee -a "$logs_file"
     fi
 }
 
@@ -39,4 +39,4 @@ validation $? "Enable and start MySQL"
 mysql_secure_installation --set-root-pass RoboShop@1  $>> $logs_file
 validation $? "Setup MySQL root password"
 
-echo "Script completed at [INFO] $(timestamp)" | tee -a "$logs_file"
+echo " $(timestamp) [INFO] Script completed." | tee -a "$logs_file"

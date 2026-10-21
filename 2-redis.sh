@@ -23,10 +23,10 @@ timestamp(){
 
 validation(){
     if [ $1 -ne 0 ] ; then
-    echo " $2 Installation failed. Check the logs for more details."  | tee -a "$logs_file"
+    echo " $(timestamp) [ERROR] $2 Installation failed. Check the logs for more details."  | tee -a "$logs_file"
     exit 1
     else
-    echo " $2 Installation completed successfully."  | tee -a "$logs_file"
+    echo " $(timestamp) [INFO] $2 Installation completed successfully."  | tee -a "$logs_file"
     fi
 }
 
