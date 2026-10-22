@@ -46,18 +46,18 @@ validation $? "Removeing Old Code"
 
 mkdir -p /app
 
-validaton $? "Creating app Directory"
+validation $? "Creating app Directory"
 
 
 curl -L -o /tmp/catalogue.zip https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts/catalogue-v4.zip &>> $logs_file
-validate $? "Downloading catalogue"
+validation $? "Downloading catalogue"
 
 cd /app
 unzip /tmp/catalogue.zip &>> $logs_file
-validate $? "Unzipping catalogue"
+validation $? "Unzipping catalogue"
 
 npm install &>> $logs_file
-validate $? "Installing dependencies"
+validation $? "Installing dependencies"
 
 sed -i "s/DOMAIN_NAME/$domain_name/g" "$scripts_dir/catalogue.service"
 cp "$scripts_dir/catalogue.service" /etc/systemd/system/catalogue.service
@@ -65,27 +65,27 @@ cp "$scripts_dir/catalogue.service" /etc/systemd/system/catalogue.service
 systemctl daemon-reload &>> $logs_file
 systemctl enable catalogue &>> $logs_file
 systemctl start catalogue &>> $logs_file
-validate $? "Starting and enabling catalogue"
+validation $? "Starting and enabling catalogue"
 
 cp "$scripts_dir/mongo.repo" /etc/yum.repos.d/mongo.repo
-validate $? "Adding Mongo repo"
+validation $? "Adding Mongo repo"
 
 
 dnf install mongodb-mongosh -y &>> $logs_file
-validate $? "Installing MongoDB Client"
+validation $? "Installing MongoDB Client"
 
 product_count=$(mongosh --host "mongodb.$domain_name" --quiet --eval 'db.getSiblingDB("catalogue").products.countDocuments()' 2>> $logs_file)
-validate $? "Connecting to MongoDB"
+validation $? "Connecting to MongoDB"
 
 if [ "$product_count" -eq 0 ]; then
     mongosh --host "mongodb.$domain_name" </app/db/master-data.js &>> $logs_file
-    validate $? "Loading products"
+    validation $? "Loading products"
 else
     echo -e "$(timestamp) [INFO] Products are already loaded...${Y}SKIPPING${N}"
 fi
 
 systemctl restart catalogue
-validate $? "Restarting Catalogue"
+validation $? "Restarting Catalogue"
 
 echo "$(timestamp) [INFO] Script completed in $SECONDS seconds"
 echo "$(timestamp) [INFO] ==== Script completed Execution =====" | tee -a $logs_file
