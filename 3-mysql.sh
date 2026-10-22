@@ -30,9 +30,9 @@ validation(){
 
 echo "Script started at [INFO] $(timestamp)" | tee -a "$logs_file"
 
-dnf module enable mysql:8.4 -y $>> $logs_file
-dnf install mysql-server -y  $>> $logs_file
-validation $? "MySQL"
+dnf module enable mysql:8.4 -y &>> $logs_file
+dnf install mysql-server -y  &>> $logs_file
+validation $? "Installing MySQL server"
 
 systemctl enable mysqld  $>> $logs_file
 systemctl start mysqld
