@@ -6,6 +6,7 @@ domain_name="khiranya.online"
 hosted_zone_id="Z016823019WZ5N3TQQPKW"
 if [ "$#" -eq 0 ] ; then
     echo "No arguments provided. Please provide at least one instance name."
+    echo "Usage: $0 <instance-name> [instance-name...]"
     exit 1
 fi
 
